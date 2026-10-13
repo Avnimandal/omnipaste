@@ -1,0 +1,251 @@
+/* 
+ * OmniPaste — High-Density Utilitarian Developer Console
+ * Tactile, zero-slop industrial design system.
+ */
+
+:root {
+  --bg-canvas: #09090b;
+  --bg-surface: #121215;
+  --bg-elevated: #18181c;
+  --bg-inset: #050507;
+  
+  --border-subtle: #222226;
+  --border-strong: #333338;
+  --border-active: #52525b;
+
+  --text-primary: #f4f4f5;
+  --text-secondary: #a1a1aa;
+  --text-tertiary: #71717a;
+  --text-muted: #52525b;
+
+  /* Restrained Functional Accents - No Purple/Indigo Slop */
+  --signal-amber: #f59e0b;
+  --signal-amber-dim: rgba(245, 158, 11, 0.12);
+  --signal-amber-border: rgba(245, 158, 11, 0.35);
+
+  --signal-vermilion: #ef4444;
+  --signal-vermilion-dim: rgba(239, 68, 68, 0.12);
+  --signal-vermilion-border: rgba(239, 68, 68, 0.45);
+
+  --signal-emerald: #10b981;
+  --signal-emerald-dim: rgba(16, 185, 129, 0.12);
+  --signal-emerald-border: rgba(16, 185, 129, 0.35);
+
+  --signal-cyan: #06b6d4;
+  --signal-cyan-dim: rgba(6, 182, 212, 0.12);
+  --signal-cyan-border: rgba(6, 182, 212, 0.35);
+
+  /* Physics Curves */
+  --ease-snappy: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-snappy: 160ms;
+}
+
+/* Global Font Definition */
+body {
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-mono-tech {
+  font-family: 'JetBrains Mono', 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Tactile Thin Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-canvas);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Sharp Industrial Containers (No monotonous rounded-xl blobs) */
+.panel-tactile {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+  transition: border-color var(--duration-snappy) var(--ease-snappy);
+}
+.panel-tactile:hover {
+  border-color: var(--border-strong);
+}
+
+.panel-header-tactile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.85rem;
+  background-color: var(--bg-inset);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Physical Push Buttons */
+.btn-tactile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 2px;
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-elevated);
+  color: var(--text-secondary);
+  transition: all var(--duration-snappy) var(--ease-snappy);
+  user-select: none;
+  cursor: pointer;
+}
+.btn-tactile:hover {
+  background-color: #222228;
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+.btn-tactile:active {
+  transform: scale(0.98);
+  background-color: var(--bg-inset);
+}
+
+.btn-tactile-primary {
+  background-color: #f4f4f5;
+  color: #09090b;
+  border-color: #ffffff;
+  font-weight: 600;
+}
+.btn-tactile-primary:hover {
+  background-color: #e4e4e7;
+  color: #000000;
+}
+
+.btn-tactile-danger {
+  background-color: var(--signal-vermilion-dim);
+  color: #fca5a5;
+  border-color: var(--signal-vermilion-border);
+}
+.btn-tactile-danger:hover {
+  background-color: rgba(239, 68, 68, 0.22);
+  color: #ffffff;
+  border-color: var(--signal-vermilion);
+}
+
+.btn-tactile-success {
+  background-color: var(--signal-emerald-dim);
+  color: #6ee7b7;
+  border-color: var(--signal-emerald-border);
+}
+.btn-tactile-success:hover {
+  background-color: rgba(16, 185, 129, 0.22);
+  color: #ffffff;
+  border-color: var(--signal-emerald);
+}
+
+/* Quick Demo Trigger Pills */
+.trigger-key {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--bg-inset);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all var(--duration-snappy) var(--ease-snappy);
+}
+.trigger-key:hover {
+  color: var(--text-primary);
+  border-color: var(--text-tertiary);
+  background-color: var(--bg-surface);
+}
+
+/* High-Visibility Security Alert Strip */
+.alert-strip-emergency {
+  background-color: #170709;
+  border: 1px solid var(--signal-vermilion);
+  border-left: 4px solid var(--signal-vermilion);
+  border-radius: 2px;
+  box-shadow: 0 4px 20px -5px rgba(239, 68, 68, 0.25);
+  animation: stripSlideIn 180ms var(--ease-snappy) forwards;
+}
+
+@keyframes stripSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Code Syntax Palette - Restrained & Intentional */
+.json-key {
+  color: #a1a1aa; /* titanium key */
+  font-weight: 500;
+}
+.json-string {
+  color: #fbbf24; /* technical amber string */
+}
+.json-number {
+  color: #38bdf8; /* sky integer */
+}
+.json-boolean {
+  color: #34d399; /* emerald boolean */
+}
+.json-null {
+  color: #f87171; /* vermilion null */
+}
+.json-punctuation {
+  color: #52525b; /* dark slate punctuation */
+}
+
+/* Alpha Checkerboard Pattern for Visual Color/Image Inspection */
+.canvas-checkerboard {
+  background-image: 
+    linear-gradient(45deg, #18181c 25%, transparent 25%),
+    linear-gradient(-45deg, #18181c 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #18181c 75%),
+    linear-gradient(-45deg, transparent 75%, #18181c 75%);
+  background-size: 14px 14px;
+  background-position: 0 0, 0 7px, 7px -7px, -7px 0px;
+  background-color: #0d0d10;
+}
+
+/* Language Tab Navigation */
+.tab-code-switch {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  color: var(--text-tertiary);
+  transition: all var(--duration-snappy) var(--ease-snappy);
+  background: transparent;
+  cursor: pointer;
+}
+.tab-code-switch:hover {
+  color: var(--text-secondary);
+}
+.tab-code-switch.active {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+/* Minimalist Snappy Notification Toast */
+#toastNotification {
+  transition: opacity 150ms var(--ease-snappy), transform 150ms var(--ease-snappy);
+}

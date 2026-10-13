@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OmniPaste // Developer Console</title>
+  <meta name="description" content="Tactile zero-click developer inspector. In-memory, air-gapped, zero telemetry." />
+  
+  <!-- Intentional Typography Pairing: Geist + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            surface: {
+              canvas: '#09090b',
+              panel: '#121215',
+              elevated: '#18181c',
+              inset: '#050507',
+            },
+            border: {
+              subtle: '#222226',
+              strong: '#333338',
+            }
+          },
+          fontFamily: {
+            sans: ['Geist', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Tactile Industrial Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-[#09090b] text-[#f4f4f5] min-h-screen selection:bg-zinc-700 selection:text-white antialiased font-sans">
+
+  <div class="max-w-6xl mx-auto px-3 sm:px-6 py-4 sm:py-6 flex flex-col min-h-screen">
+    
+    <!-- Top Hardware-Grade Instrumentation Bar -->
+    <header class="mb-4 pb-3 border-b border-[#222226]" role="banner">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+        
+        <!-- Console Identifier & Air-Gap Telemetry -->
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 bg-[#18181c] border border-[#333338] flex items-center justify-center font-mono font-bold text-xs text-zinc-300">
+            OP
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h1 class="text-sm font-bold tracking-tight text-zinc-100 font-mono">OMNIPASTE // DEV_KERNEL</h1>
+              <span class="text-[10px] font-mono px-1.5 py-0.2 bg-[#18181c] text-zinc-400 border border-[#27272a]">v2.4</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 mt-0.5 text-[11px] font-mono text-zinc-400">
+              <span>DOM IN-MEMORY</span>
+              <span class="text-zinc-600">/</span>
+              <span class="text-emerald-400 font-medium">AIR-GAPPED (0 NET BYTES)</span>
+              <span class="text-zinc-600">/</span>
+              <span>ZERO TELEMETRY</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Push Actions: Paste & Wipe Buffer -->
+        <div class="flex items-center gap-1.5 self-start md:self-auto">
+          <button 
+            onclick="OmniPaste.pasteFromClipboard()"
+            class="btn-tactile btn-tactile-primary font-mono text-xs"
+            title="Read snippet from system clipboard (Ctrl+V)">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+            <span>PASTE [CTRL+V]</span>
+          </button>
+
+          <button 
+            onclick="OmniPaste.clearInput()"
+            class="btn-tactile font-mono text-xs"
+            title="Wipe current input buffer (Esc)">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            <span>CLEAR [ESC]</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Tactical Signal Injectors Bar (Quick Samples) -->
+      <nav class="mt-3 pt-2.5 border-t border-[#1a1a1e] flex flex-wrap items-center gap-1.5" aria-label="Payload injectors">
+        <span class="text-[10px] font-mono uppercase tracking-wider text-zinc-400 mr-1">INJECTORS:</span>
+        <button onclick="OmniPaste.loadSample('security')" class="trigger-key border-rose-900/60 text-rose-300 hover:text-rose-100 hover:border-rose-600 font-semibold">
+          [1] SECRETS_LEAK
+        </button>
+        <button onclick="OmniPaste.loadSample('cron')" class="trigger-key border-amber-900/60 text-amber-300 hover:text-amber-100 hover:border-amber-600 font-semibold">
+          [2] CRON_RADAR
+        </button>
+        <button onclick="OmniPaste.loadSample('jwt')" class="trigger-key">
+          [3] JWT_TOKEN
+        </button>
+        <button onclick="OmniPaste.loadSample('json')" class="trigger-key">
+          [4] JSON_TREE
+        </button>
+        <button onclick="OmniPaste.loadSample('epoch')" class="trigger-key">
+          [5] UNIX_EPOCH
+        </button>
+        <button onclick="OmniPaste.loadSample('color')" class="trigger-key">
+          [6] HEX_COLOR
+        </button>
+        <button onclick="OmniPaste.loadSample('base64')" class="trigger-key">
+          [7] BASE64_CASCADE
+        </button>
+        <button onclick="OmniPaste.loadSample('url')" class="trigger-key">
+          [8] URL_PARAMS
+        </button>
+      </nav>
+    </header>
+
+    <!-- Main Command & Inspection Terminal Deck -->
+    <main class="flex-1 flex flex-col" role="main">
+      
+      <!-- Input Console & Hardware Status -->
+      <section class="mb-4" aria-label="Input Buffer">
+        <div class="panel-tactile overflow-hidden">
+          
+          <!-- Terminal Buffer Header -->
+          <div class="panel-header-tactile">
+            <span class="font-mono text-zinc-400 font-semibold">INPUT_BUFFER.RAW</span>
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              <span class="text-[10px] font-mono text-zinc-400">READY</span>
+            </div>
+          </div>
+
+          <!-- Textarea Buffer -->
+          <textarea 
+            id="mainInput"
+            autofocus
+            rows="4"
+            placeholder="Paste raw data: secret keys (sk-...), cron (* / 15 * * *), JWT, epoch timestamp, JSON, hex code, base64, or URL..."
+            class="w-full p-3.5 bg-[#050507] font-mono text-xs text-zinc-100 placeholder:text-zinc-600 outline-none resize-y min-h-[110px] max-h-[380px] leading-relaxed border-0"></textarea>
+
+          <!-- Telemetry Readout & Utilities Footer -->
+          <div class="px-3 py-1.5 bg-[#0e0e12] border-t border-[#222226] flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+            
+            <!-- Real-time Buffer Metrics -->
+            <div class="flex items-center gap-3 text-zinc-400 text-[11px]">
+              <span id="charCount" class="text-zinc-200 font-medium">0 chars</span>
+              <span class="text-zinc-700">|</span>
+              <span id="wordCount">0 words</span>
+              <span class="text-zinc-700">|</span>
+              <span id="byteCount" class="text-zinc-300 font-semibold">0 B</span>
+            </div>
+
+            <!-- Detected Format Indicators -->
+            <div id="detectedPillsContainer" class="flex items-center gap-1.5 flex-wrap">
+              <span class="text-[11px] text-zinc-600 font-mono">Awaiting buffer input...</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Buffer Tactical Tools -->
+        <div class="mt-1.5 flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono text-zinc-400 px-0.5">
+          <div class="flex flex-wrap items-center gap-1">
+            <span class="text-zinc-400 mr-1 text-[10px]">TRANSFORMS:</span>
+            <button onclick="OmniPaste.actionPrettify()" class="trigger-key text-zinc-300">
+              PRETTIFY_JSON
+            </button>
+            <button onclick="OmniPaste.actionMinify()" class="trigger-key text-zinc-300">
+              MINIFY_JSON
+            </button>
+            <button onclick="OmniPaste.actionUrlDecode()" class="trigger-key text-zinc-300">
+              URL_DECODE
+            </button>
+            <button onclick="OmniPaste.actionBase64Decode()" class="trigger-key text-zinc-300">
+              B64_DECODE
+            </button>
+          </div>
+          <div class="text-[10px] text-zinc-400 hidden sm:block">
+            STRICT AIR-GAP // ZERO EXTERNAL HTTP REQUESTS
+          </div>
+        </div>
+      </section>
+
+      <!-- Emergency Security Intercept Strip (Appears on Credentials) -->
+      <section id="secretAlertContainer" aria-live="assertive" aria-atomic="true"></section>
+
+      <!-- Inspection Station (Empty State vs. Active Diagnostic Panels) -->
+      <section class="flex-1" aria-label="Inspection Telemetry">
+        
+        <!-- Clean High-Density Schematic Matrix (Empty State) -->
+        <div id="emptyState" class="p-6 border border-[#222226] bg-[#0d0d10] text-zinc-400">
+          <div class="flex items-center justify-between pb-3 mb-4 border-b border-[#1c1c20]">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-zinc-600"></span>
+              <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-zinc-300">Active Parser Pipelines (In-Memory Engine)</h2>
+            </div>
+            <span class="text-[10px] font-mono text-zinc-400">STATUS: STANDBY</span>
+          </div>
+
+          <!-- Tabular Technical Diagnostic Matrix -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 text-xs font-mono">
+            <div class="p-3 bg-[#121215] border border-[#1e1e24]">
+              <div class="text-rose-400 font-bold mb-1">[01] SECRET_SHIELD</div>
+              <p class="text-[11px] text-zinc-400 leading-normal">
+                Heuristic scanner for OpenAI, AWS, Stripe & DB passwords with 1-click LLM sanitization.
+              </p>
+            </div>
+
+            <div class="p-3 bg-[#121215] border border-[#1e1e24]">
+              <div class="text-amber-400 font-bold mb-1">[02] CRON_RADAR</div>
+              <p class="text-[11px] text-zinc-400 leading-normal">
+                Translates 5-part cron syntax to natural English + predicts the next 3 trigger timestamps.
+              </p>
+            </div>
+
+            <div class="p-3 bg-[#121215] border border-[#1e1e24]">
+              <div class="text-sky-400 font-bold mb-1">[03] CODE_SYNTHESIS</div>
+              <p class="text-[11px] text-zinc-400 leading-normal">
+                Synthesizes idiomatic cURL, JavaScript fetch(), and Python requests for URLs & JSON.
+              </p>
+            </div>
+
+            <div class="p-3 bg-[#121215] border border-[#1e1e24]">
+              <div class="text-zinc-200 font-bold mb-1">[04] JWT_INSPECTOR</div>
+              <p class="text-[11px] text-zinc-400 leading-normal">
+                Decodes Header/Payload, standard claims (iss, sub, exp) with live countdown timer.
+              </p>
+            </div>
+
+            <div class="p-3 bg-[#121215] border border-[#1e1e24]">
+              <div class="text-zinc-200 font-bold mb-1">[05] JSON_LINTER</div>
+              <p class="text-[11px] text-zinc-400 leading-normal">
+                Calculates recursive keys, depth, byte delta. Pinpoints syntax errors with code pointer.
+              </p>
+            </div>
+
+            <div class="p-3 bg-[#121215] border border-[#1e1e24]">
+              <div class="text-emerald-400 font-bold mb-1">[06] B64_CASCADE</div>
+              <p class="text-[11px] text-zinc-400 leading-normal">
+                UTF-8 safe decoder. If payload is JSON, automatically renders nested inspection card.
+              </p>
+            </div>
+
+            <div class="p-3 bg-[#121215] border border-[#1e1e24]">
+              <div class="text-zinc-200 font-bold mb-1">[07] SPECTRAL_COLOR</div>
+              <p class="text-[11px] text-zinc-400 leading-normal">
+                Physical swatch, RGB/HSL/CSS vars, Tailwind arbitrary classes & WCAG AA/AAA scoring.
+              </p>
+            </div>
+
+            <div class="p-3 bg-[#121215] border border-[#1e1e24]">
+              <div class="text-zinc-200 font-bold mb-1">[08] CRYPTO_DIGEST</div>
+              <p class="text-[11px] text-zinc-400 leading-normal">
+                Real-time SHA-256, SHA-1, SHA-512 (native crypto.subtle) & MD5 hardware hashes.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rendered Diagnostic Cards Deck -->
+        <div id="resultsContainer"></div>
+      </section>
+    </main>
+
+    <!-- Console Hardware Footer -->
+    <footer class="mt-8 pt-3 border-t border-[#1e1e24] flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] font-mono text-zinc-400" role="contentinfo">
+      <div class="flex items-center gap-2">
+        <span class="w-1.5 h-1.5 bg-emerald-500"></span>
+        <span class="text-zinc-300">OMNIPASTE DISPATCH ENGINE</span>
+        <span>•</span>
+        <span>ZERO TELEMETRY GUARANTEE</span>
+      </div>
+      <div>
+        <span>SAFE FOR PRODUCTION SECRETS & PROPRIETARY IP</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Minimalist Snappy Notification Toast -->
+  <div 
+    id="toastNotification" 
+    class="fixed bottom-4 right-4 z-50 flex items-center gap-2 px-3 py-2 bg-[#121215] border border-[#333338] text-zinc-200 font-mono text-xs opacity-0 pointer-events-none translate-y-1 shadow-lg"
+    role="status"
+    aria-live="polite">
+    <span class="text-emerald-400">✓</span>
+    <span id="toastMessage">Copied to clipboard</span>
+  </div>
+
+  <!-- Engine Script -->
+  <script src="app.js"></script>
+</body>
+</html>

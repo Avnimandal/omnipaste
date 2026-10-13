@@ -1,0 +1,23 @@
+{
+  "name": "omnipaste",
+  "version": "1.0.0",
+  "description": "OmniPaste — The Zero-Click Developer Inspector. 100% Client-Side, Zero Telemetry.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "serve": "node server.js"
+  },
+  "keywords": [
+    "developer-tools",
+    "inspector",
+    "jwt",
+    "epoch",
+    "json",
+    "base64",
+    "color",
+    "url",
+    "crypto"
+  ],
+  "author": "Google DeepMind Antigravity",
+  "license": "MIT"
+}
