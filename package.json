@@ -1,23 +1,37 @@
 {
   "name": "omnipaste",
-  "version": "1.0.0",
-  "description": "OmniPaste — The Zero-Click Developer Inspector. 100% Client-Side, Zero Telemetry.",
+  "version": "2.4.0",
+  "description": "OmniPaste — The Zero-Click Developer Inspector. 100% In-Memory DOM Execution, Air-Gapped, Zero Telemetry.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "serve": "node server.js"
+    "dev": "node server.js",
+    "check": "node --check src/js/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Avnimandal/omnipaste.git"
   },
   "keywords": [
     "developer-tools",
     "inspector",
-    "jwt",
-    "epoch",
-    "json",
-    "base64",
-    "color",
-    "url",
-    "crypto"
+    "security-scanner",
+    "secret-leak-detector",
+    "cron-humanizer",
+    "code-generator",
+    "jwt-debugger",
+    "epoch-converter",
+    "json-linter",
+    "base64-decoder",
+    "wcag-contrast",
+    "crypto-digest",
+    "air-gapped",
+    "zero-telemetry"
   ],
-  "author": "Google DeepMind Antigravity",
-  "license": "MIT"
+  "author": "Avnimandal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Avnimandal/omnipaste/issues"
+  },
+  "homepage": "https://github.com/Avnimandal/omnipaste#readme"
 }
